@@ -1,22 +1,12 @@
 "use client";
-import CardWrapper, { Card, PostsCard } from "@/app/ui/dashboard/cards";
-import { lusitana } from "@/app/ui/fonts";
-import { Suspense, useEffect, useState } from "react";
-import {
-  CardSkeleton,
-  LatestInvoicesSkeleton,
-  RevenueChartSkeleton,
-} from "@/app/ui/skeletons";
-import { Metadata } from "next";
-import * as d3 from "d3";
+import { useEffect, useState } from "react";
 import Papa from "papaparse";
 import moment, { Moment } from "moment";
 import LineChart from "@/app/ui/portfolios/linechart";
 
 export default function Page() {
-  const [stockData, setStockData] = useState([]);
-  const [quantDD, setQuantDD] = useState([]);
-  const [niftyDD, setNiftyDD] = useState([]);
+  let data : any[] = []
+  const [stockData, setStockData] = useState(data);
 
   useEffect(() => {
     // Fetch the CSV file and parse it
@@ -77,7 +67,7 @@ export default function Page() {
     }
   };
 
-  const findDate = (data: any[], date: Moment) => {
+  const findDate = (data: any[], date: Moment) : any => {
     if (!data || data.length === 0) return null;
     const targetDate = date.format("MM-DD-yyyy");
     // Find the next available date in the CSV file
@@ -365,7 +355,7 @@ export default function Page() {
                         </th>
                         <th
                           scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          className="pl-20 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                         >
                           DD
                         </th>
@@ -470,7 +460,7 @@ export default function Page() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="pl-20 px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div>
                               <div className="text-sm font-medium text-gray-900">
@@ -589,7 +579,7 @@ export default function Page() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="pl-20 px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div>
                               <div className="text-sm font-medium text-gray-900">

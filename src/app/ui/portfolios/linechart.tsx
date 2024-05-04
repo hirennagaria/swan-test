@@ -1,11 +1,8 @@
-import * as d3 from "d3";
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as Plot from "@observablehq/plot";
+import { useMemo } from "react";
 import Chart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 export default function LineChart() {
-  const containerRef = useRef();
-  // const [data, setData] = useState("");
 
   const dates = useMemo(
     () => [
@@ -6667,7 +6664,7 @@ export default function LineChart() {
           min: 8000,
         },
       ],
-    },
+    } as ApexOptions ,
     series: [
       {
         data: closePrices,
@@ -6675,31 +6672,9 @@ export default function LineChart() {
       {
         data: niftyPrices,
       },
-    ],
+    ] as unknown as ApexAxisChartSeries ,
   };
 
-  //   useEffect(() => {
-  //     d3.csv("./nav.csv", d3.autoType).then(setData);
-  //   }, []);
-
-  //   useEffect(() => {
-  //     if (data === undefined) return;
-  //     const plot = Plot.plot({
-  //       width: 1500,
-  //       height: 800,
-  //       marks: [
-  //         Plot.ruleY([0]),
-  //         Plot.lineY(data, {
-  //           x: "date",
-  //           y: "close",
-  //           stroke: "steelblue",
-  //           tip: true,
-  //         }),
-  //       ],
-  //     });
-  //     containerRef.current.append(plot);
-  //     return () => plot.remove();
-  //   }, [data]);
 
   return (
     <>
